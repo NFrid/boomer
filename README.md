@@ -10,6 +10,10 @@ Zoomer application for Linux.
 - Development is done on https://twitch.tv/tsoding
 - Archive of the streams: https://www.twitch.tv/collections/HlRy-q69uBXmpQ
 
+## Fork
+
+- Added `-f` / `--flashlight` option to enable flashlight mode by default.
+
 ## Dependencies
 
 ### Debian

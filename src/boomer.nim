@@ -179,6 +179,7 @@ proc main() =
   let boomerDir = getConfigDir() / "boomer"
   var configFile = boomerDir / "config"
   var windowed = false
+  var flashlightEnabled = false
   var delaySec = 0.0
 
   # TODO(#95): Make boomer optionally wait for some kind of event (for example, key press)
@@ -193,7 +194,8 @@ proc main() =
       --new-config [filepath]   generate a new default config at [filepath]
   -c, --config <filepath>       use config at <filepath>
   -V, --version                 show the current version and exit
-  -w, --windowed                windowed mode instead of fullscreen"""
+  -w, --windowed                windowed mode instead of fullscreen
+  -f, --flashlight              enable flashlight by default"""
     var i = 1
     while i <= paramCount():
       let arg = paramStr(i)
@@ -231,6 +233,9 @@ proc main() =
       of "-w", "--windowed":
         asFlag():
           windowed = true
+      of "-f", "--flashlight":
+        asFlag():
+          flashlightEnabled = true
       of "-h", "--help":
         asFlag():
           usageQuit()
@@ -428,7 +433,7 @@ proc main() =
         let pos = getCursorPosition(display)
         Mouse(curr: pos, prev: pos)
     flashlight = Flashlight(
-      isEnabled: false,
+      isEnabled: flashlightEnabled,
       radius: 200.0)
 
 
